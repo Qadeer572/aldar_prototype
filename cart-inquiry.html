@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Al-Dar Apparel</title>
+    <title>Cart & Inquiry - Al-Dar Apparel</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
@@ -13,8 +13,9 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo-container">
-                <img src="assets/images/aldar-logo.png" alt="Al-Dar Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div class="logo" style="display: none;">AL-DAR</div>
+                <a href="index.html">
+                    <img src="assets/images/aldar-nav-logo.png" alt="Al-Dar Logo" class="logo-img">
+                </a>
             </div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
@@ -37,17 +38,17 @@
                     </ul>
                 </li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-icons">
                 <span class="icon">🔍</span>
                 <span class="icon">♡</span>
-                <a href="cart.html" class="icon cart-icon" id="cart-icon">
+                <span class="icon cart-icon" id="cart-icon" onclick="if(typeof openCart === 'function') { openCart(); } else { console.log('openCart not defined'); }">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 18C5.9 18 5.01 18.9 5.01 20C5.01 21.1 5.9 22 7 22C8.1 22 9 21.1 9 20C9 18.9 8.1 18 7 18ZM1 2V4H3L6.6 11.59L5.25 14.04C5.09 14.32 5 14.65 5 15C5 16.1 5.9 17 7 17H19V15H7.42C7.28 15 7.17 14.89 7.17 14.75L7.2 14.63L8.1 13H15.55C16.3 13 16.96 12.59 17.3 11.97L20.88 5.48C20.96 5.34 21 5.17 21 5C21 4.45 20.55 4 20 4H5.21L4.27 2H1ZM17 18C15.9 18 15.01 18.9 15.01 20C15.01 21.1 15.9 22 17 22C18.1 22 19 21.1 19 20C19 18.9 18.1 18 17 18Z" fill="currentColor"/>
                     </svg>
                     <span class="cart-count">0</span>
-                </a>
+                </span>
                 <span class="icon menu-toggle">☰</span>
             </div>
         </div>
@@ -58,71 +59,92 @@
         <div class="breadcrumb-container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">
-                    Home > Contact
+                    Home > Cart & Inquiry
                 </li>
             </ol>
         </div>
     </nav>
 
-    <!-- Contact Header -->
-    <section class="contact-header">
-        <h1>Contact Us</h1>
-        <p class="main-subtitle">Ready to Create Your Own Thobe Brand?</p>
-        <p class="subtitle">Connect with us to discover how we can help you make that happen.</p>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section">
-        <div class="contact-container">
-            <!-- Left Column -->
-            <div class="contact-left">
-                <h2>Get in Touch</h2>
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">
-                        SEND MESSAGE
-                        <img src="assets/images/arrow-right.svg" alt="Send" class="button-icon">
-                    </button>
-                </form>
+    <!-- Cart & Inquiry Section -->
+    <section class="cart-inquiry-section">
+        <div class="cart-inquiry-container">
+            <div class="cart-inquiry-header">
+                <h1>Cart & Inquiry</h1>
+                <p class="cart-subtitle">Select your designs and quantities to send us an inquiry</p>
             </div>
 
-            <!-- Right Column -->
-            <div class="contact-right">
-                <h2>Contact Information</h2>
-                <div class="contact-info">
-                    <div class="info-item">
-                        <h3>Phone</h3>
-                        <p>+971 4 353 2519</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Email</h3>
-                        <p>hello@aldarapparel.com</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Address</h3>
-                        <p>Ali Bin Abi Talib Road, Near Dubai Museum, Bur Dubai, Dubai, United Arab Emirates</p>
-                    </div>
-                    <div class="info-item">
-                        <h3>Social Media</h3>
-                        <div class="social-links">
-                            <a href="#" class="social-link">Facebook</a>
-                            <a href="#" class="social-link">Instagram</a>
-                            <a href="#" class="social-link">LinkedIn</a>
+            <div class="cart-inquiry-content">
+                <!-- Left Column - Selected Designs -->
+                <div class="cart-designs-column">
+                    <h2>Selected Designs</h2>
+                    <div class="cart-items-list" id="cart-items-list">
+                        <!-- Cart items will be dynamically added here -->
+                        <div class="cart-empty-message" id="cart-empty-message">
+                            <p>Your cart is empty. Please select designs from our collection.</p>
+                            <a href="men.html" class="browse-button">Browse Collection</a>
                         </div>
                     </div>
                 </div>
-                <div class="map-placeholder">MAP PLACEHOLDER</div>
+
+                <!-- Right Column - Quantity & Inquiry Form -->
+                <div class="cart-inquiry-column">
+                    <div class="quantity-section">
+                        <h2>Order Details</h2>
+                        <div class="quantity-input-group">
+                            <label for="quantity">Quantity (Minimum: 1,000 pieces)</label>
+                            <div class="quantity-input-wrapper">
+                                <button type="button" class="quantity-btn" id="quantity-decrease">-</button>
+                                <input type="number" id="quantity" name="quantity" min="1000" value="1000" step="100" class="quantity-input">
+                                <button type="button" class="quantity-btn" id="quantity-increase">+</button>
+                            </div>
+                            <p class="quantity-note">Minimum order quantity: 1,000 pieces</p>
+                        </div>
+                    </div>
+
+                    <div class="inquiry-form-section">
+                        <h2>Send Inquiry</h2>
+                        <form class="inquiry-form" id="inquiry-form">
+                            <div class="form-group">
+                                <label for="company-name">Company Name *</label>
+                                <input type="text" id="company-name" name="company-name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-person">Contact Person *</label>
+                                <input type="text" id="contact-person" name="contact-person" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="country">Country *</label>
+                                <input type="text" id="country" name="country" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="additional-notes">Additional Notes or Requirements</label>
+                                <textarea id="additional-notes" name="additional-notes" rows="4" placeholder="Please provide any additional information about your requirements, customization needs, or special requests..."></textarea>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <span>I agree to the terms and conditions and privacy policy *</span>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="submit-inquiry-btn">Send Inquiry</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -130,9 +152,11 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- Left: Logo + Social -->
+            <!-- Left Section: Logo and Social Icons -->
             <div class="footer-left">
-                <img src="assets/images/aldar-logo.png" alt="Al-Dar Logo" class="footer-logo-img">
+                <div class="footer-logo">
+                    <img src="assets/images/aldar-logo.png" alt="Al-Dar Logo" class="footer-logo-img">
+                </div>
                 <div class="footer-social">
                     <a href="#" class="social-icon" aria-label="Facebook">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,14 +181,18 @@
                     </a>
                 </div>
             </div>
-            <!-- Right: Nav + Contact -->
+
+            <!-- Right Section: Navigation and Contact Info -->
             <div class="footer-right">
+                <!-- Navigation Links -->
                 <nav class="footer-nav">
                     <a href="index.html" class="footer-nav-link">Home</a>
                     <a href="about.html" class="footer-nav-link">About</a>
                     <a href="#gallery" class="footer-nav-link">Gallery</a>
-                    <a href="contact.html" class="footer-nav-link active">Contact Us</a>
+                    <a href="contact.html" class="footer-nav-link">Contact Us</a>
                 </nav>
+
+                <!-- Contact Information -->
                 <div class="footer-contact">
                     <div class="footer-contact-item">
                         <svg class="contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -189,12 +217,16 @@
                 </div>
             </div>
         </div>
+
+        <!-- Copyright Section -->
         <div class="footer-bottom">
             <p>&copy; Al-Dar Apparel 1900-2025. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
+    <script src="js/cart-inquiry.js"></script>
 </body>
 </html>
 

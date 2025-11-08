@@ -23,49 +23,10 @@ function addToCart(productData) {
     updateCartCount();
 }
 
-// Make openCart globally accessible
+// Make openCart globally accessible - redirects to cart page
 window.openCart = function() {
-    console.log('openCart function called'); // Debug log
-    console.log('Cart items:', cartItems); // Debug log
-    
-    if (cartItems.length === 0) {
-        alert('Your cart is empty. Add items to your cart to view them here.');
-        return;
-    }
-    
-    // Create cart display
-    let cartHTML = 'Shopping Cart (' + cartItems.length + ' items):\n\n';
-    let total = 0;
-    
-    cartItems.forEach((item, index) => {
-        cartHTML += `${index + 1}. ${item.name} - Size: ${item.size.toUpperCase()} - ${item.price}\n`;
-        // Extract price number (remove AED and commas)
-        const priceNum = parseFloat(item.price.replace('AED', '').replace(',', '').trim());
-        if (!isNaN(priceNum)) {
-            total += priceNum;
-        }
-    });
-    
-    cartHTML += `\nTotal: AED ${total.toLocaleString()}`;
-    
-    alert(cartHTML);
-    console.log('Cart Items:', cartItems);
+    window.location.href = 'cart.html';
 };
-
-// Cart icon click functionality - use event delegation for better reliability
-document.addEventListener('click', function(e) {
-    // Check if click is on cart icon or any child element
-    const cartIcon = e.target.closest('.cart-icon') || e.target.closest('#cart-icon');
-    const cartCount = e.target.closest('.cart-count');
-    
-    if (cartIcon || cartCount) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('Cart icon clicked!'); // Debug log
-        openCart();
-        return false;
-    }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize cart count on page load
